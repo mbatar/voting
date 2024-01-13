@@ -1,7 +1,6 @@
-import { getClient } from "@/lib/client";
 import { gql } from "@apollo/client";
-
-import Image from "next/image";
+import { getClient } from "@/lib/client";
+import EmployeeList from "@/components/employeeList/EmployeeList";
 
 const query = gql`
   query Employees {
@@ -20,19 +19,7 @@ export default async function Home() {
 
   return (
     <main>
-      {data.employees.map((employee: any, key: any) => (
-        <div key={key}>
-          <Image
-            src={employee.avatar}
-            alt={employee.name}
-            width={500}
-            height={500}
-          />
-          {employee.name}
-          {employee.point}
-          {employee.position}
-        </div>
-      ))}
+      <EmployeeList employeeList={data.employees} />
     </main>
   );
 }
