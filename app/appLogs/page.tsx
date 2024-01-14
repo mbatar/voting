@@ -1,4 +1,3 @@
-"use client";
 import styled from "styled-components";
 import { GET_ALL_LOGS } from "@/app/service/graphql";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
