@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useMutation } from "@apollo/client";
 import { INCREMENT_VOTE } from "@/constants";
 import { AppContext } from "@/context/appContext";
-import { UPDATE_EMPLOYEE } from "@/service/graphql";
+import { GET_ALL_EMPLOYEES, UPDATE_EMPLOYEE } from "@/service/graphql";
 
 const ButtonWrapper = styled.div`
   width: 100%;
@@ -35,7 +35,9 @@ const ButtonWrapper = styled.div`
 `;
 
 function Button({ id }: IButton) {
-  const [updateEmployee, { loading, error }] = useMutation(UPDATE_EMPLOYEE);
+  const [updateEmployee, { loading, error }] = useMutation(UPDATE_EMPLOYEE, {
+    refetchQueries: [GET_ALL_EMPLOYEES],
+  });
   const { dispatch } = useContext(AppContext);
 
   const handleUpdateEmploye = async (id: string) => {

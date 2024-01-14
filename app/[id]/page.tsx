@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "@/context/appContext";
+import { useSuspenseQuery } from "@apollo/client";
+import { GET_EMPLOYEE } from "@/service/graphql";
+import { IEmployee } from "@/components/employeeListItem/types";
 
 const EmployeeDetailsWrapper = styled.div`
   width: 100%;
@@ -51,25 +54,29 @@ const ImageWrapper = styled.div`
 `;
 
 function EmployeeDetails({ params: { id } }: { params: { id: string } }) {
-  const { state } = useContext(AppContext);
-  const employee = state.employees.find((employee) => employee.id === id);
+  const { data } = useSuspenseQuery<{ employee: IEmployee }>(GET_EMPLOYEE, {
+    variables: { employeeId: id },
+  });
+
+  if (!data) return "loading...";
+
   return (
     <EmployeeDetailsWrapper>
       <EmployeeDetailsContent>
         <ImageWrapper>
-          {employee?.avatar && (
+          {data.employee.avatar && (
             <Image
-              src={employee?.avatar}
+              src={data.employee.avatar}
               width={180}
               height={180}
-              alt={employee?.name}
+              alt={data.employee?.name}
             />
           )}
         </ImageWrapper>
         <EmployeeInfoWrapper>
-          <h1>{employee?.name}</h1>
-          <h2>{employee?.position}</h2>
-          <h2>{employee?.point}</h2>
+          <h1>{data.employee.name}</h1>
+          <h2>{data.employee.position}</h2>
+          <h2>{data.employee.point}</h2>
         </EmployeeInfoWrapper>
       </EmployeeDetailsContent>
     </EmployeeDetailsWrapper>
