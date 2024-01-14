@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IEmployee } from "../employeeListItem/types";
 import EmployeeListItem from "../employeeListItem/EmployeeListItem";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { GET_ALL_EMPLOYEES } from "@/service/graphql";
+import { GET_ALL_EMPLOYEES, GET_ALL_LOGS } from "@/service/graphql";
 
 const EmployeeListWrapper = styled.div`
   gap: 1rem;
@@ -18,19 +18,14 @@ const EmployeeListWrapper = styled.div`
 `;
 
 function EmployeeList() {
-  const { data } = useSuspenseQuery<{ employees: IEmployee[] }>(
+  const { data } = useSuspenseQuery<{ getAllEmployees: IEmployee[] }>(
     GET_ALL_EMPLOYEES
   );
-
-  function compareByPoint(a: IEmployee, b: IEmployee) {
-    return b.point - a.point;
-  }
-
-  if (!data.employees.length) return "loading...";
+  useSuspenseQuery(GET_ALL_LOGS);
 
   return (
     <EmployeeListWrapper>
-      {data.employees.map((employee: any, key: any) => (
+      {data.getAllEmployees.map((employee: any, key: any) => (
         <EmployeeListItem key={key} employee={employee} />
       ))}
     </EmployeeListWrapper>
