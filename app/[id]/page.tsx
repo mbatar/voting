@@ -64,34 +64,32 @@ function EmployeeDetails({ params: { id } }: { params: { id: string } }) {
   const { data } = useSuspenseQuery<{ employee: IEmployee }>(GET_EMPLOYEE, {
     variables: { employeeId: id },
   });
-  console.log(data.employee);
-  if (!data) return "loading...";
 
   return (
     <EmployeeDetailsWrapper>
       <EmployeeDetailsContent>
-        {data.employee.isFirst && (
+        {data?.employee?.isFirst && (
           <CrownWrapper>
             <Image src="/images/crown.svg" width={40} height={40} alt="crown" />
           </CrownWrapper>
         )}
         <ImageWrapper>
-          {data.employee.avatar && (
+          {data?.employee?.avatar && (
             <Image
-              src={data.employee.avatar}
+              src={data?.employee?.avatar}
               width={180}
               height={180}
-              alt={data.employee?.name}
+              alt={data?.employee?.name}
             />
           )}
         </ImageWrapper>
         <EmployeeInfoWrapper>
-          <h1>{data.employee.name}</h1>
-          <h2>{data.employee.position}</h2>
-          <h2>{data.employee.point}</h2>
-          <h2>{data.employee.address}</h2>
-          <h2>{data.employee.email}</h2>
-          <h2>{data.employee.phone}</h2>
+          <h1>{data?.employee?.name}</h1>
+          <h2>{data?.employee?.position}</h2>
+          <h2>{data?.employee?.point}</h2>
+          <h2>{data?.employee?.address}</h2>
+          <h2>{data?.employee?.email}</h2>
+          <h2>{data?.employee?.phone}</h2>
         </EmployeeInfoWrapper>
       </EmployeeDetailsContent>
     </EmployeeDetailsWrapper>

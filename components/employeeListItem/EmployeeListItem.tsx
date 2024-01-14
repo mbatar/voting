@@ -52,6 +52,7 @@ const ListItemWrapper = styled.div`
 `;
 
 const CrownWrapper = styled.div`
+  z-index: 10;
   position: absolute;
   top: -20px;
   left: 50%;
