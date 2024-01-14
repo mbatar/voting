@@ -9,11 +9,7 @@ export const { getClient } = registerApolloClient(() => {
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
     link: new HttpLink({
-      uri: `${
-        process.env.NODE_ENV === "production"
-          ? "https://voting-kmdn.vercel.app/"
-          : ""
-      }api/graphql`,
+      uri: "api/graphql",
     }),
   });
 });

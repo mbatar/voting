@@ -10,11 +10,7 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: `${
-      process.env.NODE_ENV === "production"
-        ? "https://voting-kmdn.vercel.app//"
-        : ""
-    }api/graphql`,
+    uri: "api/graphql",
   });
 
   return new NextSSRApolloClient({
