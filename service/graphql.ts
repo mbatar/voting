@@ -8,6 +8,7 @@ export const GET_ALL_EMPLOYEES = gql`
       point
       position
       avatar
+      isFirst
     }
   }
 `;
@@ -17,9 +18,13 @@ export const GET_EMPLOYEE = gql`
     employee(id: $employeeId) {
       id
       name
+      email
+      address
+      phone
       point
       position
       avatar
+      isFirst
     }
   }
 `;

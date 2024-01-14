@@ -7,4 +7,8 @@ export interface IEmployee {
   point: number;
   position: string;
   avatar: string;
+  isFirst: boolean;
+  address?: string;
+  phone?: string;
+  email?: string;
 }
