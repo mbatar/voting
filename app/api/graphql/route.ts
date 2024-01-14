@@ -1,7 +1,6 @@
 import slug from "slug";
 import casual from "casual";
 import { gql } from "graphql-tag";
-import { ILog } from "@/app/appLogs/types";
 import { ApolloServer } from "@apollo/server";
 import { IEmployee } from "@/app/components/employeeListItem/types";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
@@ -20,24 +19,15 @@ const typeDefs = gql`
     phone: String
   }
 
-  type Log {
-    type: String
-    name: String
-    variables: String
-    message: String
-  }
-
   type Query {
     getAllEmployees: [Employee]
     getEmployeeById(id: ID!): Employee
-    getLogs: [Log]
   }
 
   type Mutation {
     updateEmployee(id: ID!): Employee
   }
 `;
-const logs: ILog[] = [];
 const employees = [...new Array(13)]
   .map((i) => {
     const name = casual.full_name;
@@ -71,7 +61,6 @@ const resolvers = {
         .map((employee, index) => ({ ...employee, isFirst: index === 0 })),
     getEmployeeById: (parent: IEmployee, { id }: { id: string }) =>
       employees.find((employee) => employee.id === id),
-    getLogs: () => logs,
   },
   Mutation: {
     updateEmployee: (parent: IEmployee, { id }: { id: string }) => {
@@ -89,31 +78,11 @@ const resolvers = {
     },
   },
 };
-const LOGGING: any = {
-  async requestDidStart(requestContext: any) {
-    logs.push({
-      type: "request",
-      name: requestContext.request.operationName,
-      variables: JSON.stringify(requestContext.request.variables),
-      message: "request started",
-    });
-    return {
-      didEncounterErrors(requestContext: any) {
-        logs.push({
-          type: "error",
-          name: requestContext.request.operationName,
-          variables: JSON.stringify(requestContext.request.variables),
-          message: requestContext.errors[0].message,
-        });
-      },
-    };
-  },
-};
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [ApolloServerPluginCacheControlDisabled(), LOGGING],
+  plugins: [ApolloServerPluginCacheControlDisabled()],
 });
 
 const handler = startServerAndCreateNextHandler(server);

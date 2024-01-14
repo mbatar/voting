@@ -13,17 +13,6 @@ export const GET_ALL_EMPLOYEES = gql`
   }
 `;
 
-export const GET_ALL_LOGS = gql`
-  query GetLogs {
-    getLogs {
-      type
-      name
-      variables
-      message
-    }
-  }
-`;
-
 export const GET_EMPLOYEE = gql`
   query GetEmployeeById($getEmployeeByIdId: ID!) {
     getEmployeeById(id: $getEmployeeByIdId) {
