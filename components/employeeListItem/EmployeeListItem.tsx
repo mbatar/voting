@@ -1,12 +1,13 @@
 "use client";
 
-import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
+import { IEmployee } from "./types";
 import Button from "../button/Button";
+import styled from "styled-components";
 import InfoSection from "../infoSection/InfoSection";
 import ImageSection from "../imageSection/ImageSection";
 import PointSection from "../pointSection/PointSection";
-import { IEmployeeListItem } from "./types";
-import Link from "next/link";
 
 const ListItemWrapper = styled.div`
   gap: 2rem;
@@ -50,10 +51,22 @@ const ListItemWrapper = styled.div`
   }
 `;
 
-function EmployeeListItem({ employee }: IEmployeeListItem) {
+const CrownWrapper = styled.div`
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translatex(-50%);
+`;
+
+function EmployeeListItem({ employee }: { employee: IEmployee }) {
   return (
     <Link href={`/${employee.id}`}>
       <ListItemWrapper>
+        {employee.isFirst && (
+          <CrownWrapper>
+            <Image src="/images/crown.svg" width={30} height={30} alt="crown" />
+          </CrownWrapper>
+        )}
         <PointSection point={employee.point} />
         <ImageSection avatar={employee.avatar} alt={employee.name} />
         <InfoSection name={employee.name} position={employee.position} />

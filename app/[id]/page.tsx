@@ -23,6 +23,7 @@ const EmployeeInfoWrapper = styled.div`
   align-items: center;
 `;
 const EmployeeDetailsContent = styled.div`
+  position: relative;
   width: 50%;
   margin: 0 auto;
   display: flex;
@@ -51,16 +52,29 @@ const ImageWrapper = styled.div`
   }
 `;
 
+const CrownWrapper = styled.div`
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translatex(-50%);
+  z-index: 1;
+`;
+
 function EmployeeDetails({ params: { id } }: { params: { id: string } }) {
   const { data } = useSuspenseQuery<{ employee: IEmployee }>(GET_EMPLOYEE, {
     variables: { employeeId: id },
   });
-
+  console.log(data.employee);
   if (!data) return "loading...";
 
   return (
     <EmployeeDetailsWrapper>
       <EmployeeDetailsContent>
+        {data.employee.isFirst && (
+          <CrownWrapper>
+            <Image src="/images/crown.svg" width={40} height={40} alt="crown" />
+          </CrownWrapper>
+        )}
         <ImageWrapper>
           {data.employee.avatar && (
             <Image
@@ -75,6 +89,9 @@ function EmployeeDetails({ params: { id } }: { params: { id: string } }) {
           <h1>{data.employee.name}</h1>
           <h2>{data.employee.position}</h2>
           <h2>{data.employee.point}</h2>
+          <h2>{data.employee.address}</h2>
+          <h2>{data.employee.email}</h2>
+          <h2>{data.employee.phone}</h2>
         </EmployeeInfoWrapper>
       </EmployeeDetailsContent>
     </EmployeeDetailsWrapper>

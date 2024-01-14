@@ -28,11 +28,9 @@ function EmployeeList() {
 
   if (!data.employees.length) return "loading...";
 
-  const sortedEmployees = [...data.employees].sort(compareByPoint);
-
   return (
     <EmployeeListWrapper>
-      {sortedEmployees.map((employee: any, key: any) => (
+      {data.employees.map((employee: any, key: any) => (
         <EmployeeListItem key={key} employee={employee} />
       ))}
     </EmployeeListWrapper>
