@@ -1,0 +1,2 @@
+export const FILL_EMPLOYEES = "FILL_EMPLOYEES";
+export const INCREMENT_VOTE = "INCREMENT_VOTE";

@@ -1,7 +1,12 @@
 "use client";
 
-import styled from "styled-components";
 import { IButton } from "./types";
+import { useContext } from "react";
+import styled from "styled-components";
+import { useMutation } from "@apollo/client";
+import { INCREMENT_VOTE } from "@/constants";
+import { AppContext } from "@/context/appContext";
+import { UPDATE_EMPLOYEE } from "@/service/graphql";
 
 const ButtonWrapper = styled.div`
   width: 100%;
@@ -28,11 +33,29 @@ const ButtonWrapper = styled.div`
     }
   }
 `;
+
 function Button({ id }: IButton) {
+  const [updateEmployee, { loading, error }] = useMutation(UPDATE_EMPLOYEE);
+  const { dispatch } = useContext(AppContext);
+
+  const handleUpdateEmploye = async (id: string) => {
+    try {
+      await updateEmployee({
+        variables: { updateEmployeeId: id },
+      });
+      dispatch({ type: INCREMENT_VOTE, payload: id });
+    } catch (error) {
+      console.error("Error updating Employee:", error);
+    }
+  };
+
   const handleVote = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log(id);
+    handleUpdateEmploye(id);
   };
+
+  if (loading) return "Submitting...";
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <ButtonWrapper onClick={handleVote}>
