@@ -6,17 +6,21 @@ import { useMutation } from "@apollo/client";
 import { GET_ALL_EMPLOYEES, UPDATE_EMPLOYEE } from "@/service/graphql";
 
 const ButtonWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   position: relative;
+  height: 40px;
+  padding: 0px 40px;
 `;
 
 const ButtonComponent = styled.button`
   position: absolute;
   z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: #81be83;
-  width: 100%;
   padding: 12px;
   display: flex;
   border-radius: 4px;
