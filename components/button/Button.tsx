@@ -7,10 +7,12 @@ import { GET_ALL_EMPLOYEES, UPDATE_EMPLOYEE } from "@/service/graphql";
 
 const ButtonWrapper = styled.div`
   width: 100%;
-  padding: 0px 60px;
+  position: relative;
 `;
 
 const ButtonComponent = styled.button`
+  position: absolute;
+  z-index: 10;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: #81be83;
@@ -26,15 +28,17 @@ const ButtonComponent = styled.button`
   @media (max-width: 768px) {
     padding: 16px;
   }
-  &:active {
-    background-color: #81be8320;
-    border: 1px solid #81be8320;
-    color: #81be83;
-  }
-  &:hover:not(:active) {
-    background-color: #81be83;
-    border: 1px solid #81be83;
-    color: #fff;
+  @media (min-width: 768px) {
+    &:active {
+      background-color: #81be8320;
+      border: 1px solid #81be8320;
+      color: #81be83;
+    }
+    &:hover:not(:active) {
+      background-color: #81be83;
+      border: 1px solid #81be83;
+      color: #fff;
+    }
   }
 `;
 
