@@ -1,7 +1,7 @@
 import slug from "slug";
 import casual from "casual";
 import { gql } from "graphql-tag";
-import { ILog } from "@/app/logs/types";
+import { ILog } from "@/app/appLogs/types";
 import { ApolloServer } from "@apollo/server";
 import { IEmployee } from "@/components/employeeListItem/types";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";

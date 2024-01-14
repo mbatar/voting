@@ -35,7 +35,7 @@ const StyledTable = styled.table`
     }
   }
 `;
-function Page() {
+function AppLogs() {
   const { data } = useSuspenseQuery<{ getLogs: ILog[] }>(GET_ALL_LOGS);
 
   return (
@@ -60,4 +60,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default AppLogs;
