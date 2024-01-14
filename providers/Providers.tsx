@@ -1,11 +1,10 @@
 "use client";
 
-import StyledComponentsRegistry from "@/lib/registry";
-import { ThemeProvider } from "styled-components";
 import theme from "@/styles/theme";
 import GlobalStyles from "@/styles/GlobalStyles";
-import { AppContextProvider } from "@/context/appContext";
+import { ThemeProvider } from "styled-components";
 import { ApolloWrapper } from "@/lib/apolloProvider";
+import StyledComponentsRegistry from "@/lib/registry";
 
 const Providers = (props: React.PropsWithChildren) => {
   return (
@@ -13,9 +12,7 @@ const Providers = (props: React.PropsWithChildren) => {
       <GlobalStyles />
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
-          <AppContextProvider>
-            <ApolloWrapper>{props.children}</ApolloWrapper>
-          </AppContextProvider>
+          <ApolloWrapper>{props.children}</ApolloWrapper>
         </ThemeProvider>
       </StyledComponentsRegistry>
     </>
