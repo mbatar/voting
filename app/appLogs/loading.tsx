@@ -1,4 +1,4 @@
-import LoadingSection from "@/components/loadingSection/LoadingSection";
+import LoadingSection from "@/app/components/loadingSection/LoadingSection";
 
 function Loading() {
   return <LoadingSection />;

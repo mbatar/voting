@@ -1,4 +1,4 @@
-import EmployeeList from "@/components/employeeList/EmployeeList";
+import EmployeeList from "@/app/components/employeeList/EmployeeList";
 
 export default async function Home() {
   return (

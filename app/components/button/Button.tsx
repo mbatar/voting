@@ -7,7 +7,7 @@ import {
   GET_ALL_EMPLOYEES,
   GET_ALL_LOGS,
   UPDATE_EMPLOYEE,
-} from "@/service/graphql";
+} from "@/app/service/graphql";
 
 const ButtonWrapper = styled.div`
   width: 80%;

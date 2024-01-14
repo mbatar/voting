@@ -2,8 +2,7 @@
 import styled from "styled-components";
 import { GET_ALL_LOGS } from "@/app/service/graphql";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { ILog } from "./types";
-
+import { ILog } from "@/app/appLogs/types";
 const StyledTable = styled.table`
   width: 100%;
   caption-side: top;
@@ -36,7 +35,7 @@ const StyledTable = styled.table`
   }
 `;
 
-function AppLogs() {
+function LogTable() {
   const { data } = useSuspenseQuery<{ getLogs: ILog[] }>(GET_ALL_LOGS);
 
   return (
@@ -61,4 +60,4 @@ function AppLogs() {
   );
 }
 
-export default AppLogs;
+export default LogTable;

@@ -3,8 +3,8 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { useSuspenseQuery } from "@apollo/client";
-import { GET_ALL_LOGS, GET_EMPLOYEE } from "@/service/graphql";
-import { IEmployee } from "@/components/employeeListItem/types";
+import { GET_ALL_LOGS, GET_EMPLOYEE } from "@/app/service/graphql";
+import { IEmployee } from "@/app/components/employeeListItem/types";
 
 const EmployeeDetailsWrapper = styled.div`
   width: 100%;

@@ -3,7 +3,7 @@ import casual from "casual";
 import { gql } from "graphql-tag";
 import { ILog } from "@/app/appLogs/types";
 import { ApolloServer } from "@apollo/server";
-import { IEmployee } from "@/components/employeeListItem/types";
+import { IEmployee } from "@/app/components/employeeListItem/types";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { ApolloServerPluginCacheControlDisabled } from "@apollo/server/plugin/disabled";
 
