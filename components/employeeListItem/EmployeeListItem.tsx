@@ -14,7 +14,7 @@ const ListItemWrapper = styled.div`
   display: flex;
   cursor: pointer;
   position: relative;
-  padding: 40px 0px;
+  padding: 40px 0px 40px 0px;
   align-items: center;
   border-radius: 10px;
   flex-direction: column;
