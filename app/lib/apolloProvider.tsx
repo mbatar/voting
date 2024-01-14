@@ -10,7 +10,11 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: `${process.env.NEXT_PUBLIC_SITE_URL}/api/graphql`,
+    uri: `${
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_PUBLIC_SITE_URL_PROD
+        : process.env.NEXT_PUBLIC_SITE_URL_DEV
+    }/api/graphql`,
   });
 
   return new NextSSRApolloClient({
