@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "@/context/appContext";
 import { useSuspenseQuery } from "@apollo/client";
 import { GET_EMPLOYEE } from "@/service/graphql";
 import { IEmployee } from "@/components/employeeListItem/types";
